@@ -33,6 +33,24 @@ const PostArticle = async (req, res) => {
   }
 };
 
+const fileUpload =async (req, res) => {
+  try {
+    const newPath = __dirname + "/files/";
+    const file = req.files.file;
+    const fileName = file.name
+    file.mv(`${newPath}${fileName}`,(err)=>{
+      if(err){
+        console.log({err});
+      } else {
+        console.log('FIle Uploaded');
+      }
+    })
+  } catch (e) {
+    console.log({ e });
+  }
+};
+
 module.exports = {
   PostArticle: PostArticle,
+  fileUpload: fileUpload,
 };

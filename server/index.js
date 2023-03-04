@@ -1,9 +1,12 @@
 const path = require('path');
 const express = require('express');
+const fileupload = require('express-fileupload');
+
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const { connectDB } = require('./config/db');
+const bodyParser = require('body-parser');
 
 var route = require('./routes/web');
 
@@ -19,6 +22,10 @@ const app = express();
 // }
 app.use(cors('*'))
 app.use(express.json());
+app.use(fileupload());
+app.use(express.static('files'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api',route)
 
