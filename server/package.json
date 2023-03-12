@@ -18,6 +18,10 @@
     "express-fileupload": "^1.4.0",
     "mongoose": "^6.9.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.21",
+    "pdf-parse": "^1.1.1",
+    "pdf.js-extract": "^0.2.1",
+    "pdf2json": "^3.0.3",
+    "pdfreader": "^3.0.0"
   }
 }

@@ -1,5 +1,8 @@
 const axios = require('axios');
-
+const fs = require('fs');
+const PdfParse = require('pdf-parse');
+const PDFExtract = require('pdf.js-extract').PDFExtract;
+const pdfExtract = new PDFExtract();
 const PostArticle = async (req, res) => {
   try {
     console.log('req.body', req.body);
@@ -23,6 +26,8 @@ const PostArticle = async (req, res) => {
 
     // console.log({ similarity });
 
+    
+
     return res.status(200).json({
       status: true,
       status_message: 'Success',
@@ -37,7 +42,8 @@ const fileUpload =async (req, res) => {
   try {
     const newPath = __dirname + "/files/";
     const file = req.files.file;
-    const fileName = file.name
+    const fileName = file.name;
+
     file.mv(`${newPath}${fileName}`,(err)=>{
       if(err){
         console.log({err});
@@ -45,6 +51,13 @@ const fileUpload =async (req, res) => {
         console.log('FIle Uploaded');
       }
     })
+    console.log(`${newPath}${fileName}`);
+    console.log(__dirname + `/files/${fileName}`);
+  
+    let readFile = fs.readFileSync(__dirname + `/files/${fileName}`);
+    let  pdfExtract = await  PdfParse(readFile);
+    console.log(pdfExtract.text);
+   
   } catch (e) {
     console.log({ e });
   }
