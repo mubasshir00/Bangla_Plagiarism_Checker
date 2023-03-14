@@ -51,12 +51,35 @@ const fileUpload =async (req, res) => {
         console.log('FIle Uploaded');
       }
     })
-    console.log(`${newPath}${fileName}`);
-    console.log(__dirname + `/files/${fileName}`);
+    
   
     let readFile = fs.readFileSync(__dirname + `/files/${fileName}`);
     let  pdfExtract = await  PdfParse(readFile);
     console.log(pdfExtract.text);
+
+
+    const url = `http://localhost:3334/api/generate_result`;
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    let similarity_res = [];
+    // console.log({ url });
+    const similarity = await axios
+      .post(url, {
+        article: JSON.stringify(pdfExtract.text),
+        category: req.body.category ? req.body.category : 'CoronaVirus',
+      })
+      .then(res => {
+        console.log(res.data);
+        similarity_res = res.data.similarity_result;
+      });
+
+      return res.status(200).json({
+        status: true,
+        status_message: 'Success',
+        result: similarity_res,
+      });
    
   } catch (e) {
     console.log({ e });

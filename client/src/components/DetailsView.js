@@ -46,12 +46,13 @@ const DetailsView = ( details_view ) => {
             </td>
           </tr> */}
           {details_view.details_view.map(i => {
+            let tempArticle = i.givenSentence
             return (
               <tr>
                 <td>{i.similarity_percentage}%</td>
                 <td>{i.Source}</td>
                 <td>{i.Source_link}</td>
-                <td>{i.article.slice(0, 30)}</td>
+                <td>{tempArticle.slice(0, 30).trim()}</td>
               </tr>
             );
           })}
