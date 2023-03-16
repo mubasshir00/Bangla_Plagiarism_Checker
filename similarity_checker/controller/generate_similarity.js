@@ -12,7 +12,7 @@ const GenerateSimilarity = async (req, res) => {
     let tempIndexArray = [];
     tempIndexArray.push(0);
     for(let i=0;i<given_article.length;i++){
-      if (given_article[i] == '।') {
+      if (given_article[i] == '।' ) {
         tempIndexArray.push(i);
       }
     }
@@ -36,7 +36,9 @@ const GenerateSimilarity = async (req, res) => {
           Source_link: find_related_article[i].Source_link,
           similarity_percentage: checkSimilarity_res,
         };
-        similarity_result.push(new_obj);
+        console.log({ checkSimilarity_res });
+        if (checkSimilarity_res>0) similarity_result.push(new_obj);
+        
       }
     }
     // for (let i = 0; i < find_related_article.length; i++) {

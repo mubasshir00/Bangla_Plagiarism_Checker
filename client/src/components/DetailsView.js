@@ -12,16 +12,16 @@ const DetailsView = ( details_view ) => {
         <colgroup></colgroup>
         <thead>
           <tr>
-            <th scope="col" rowspan="2">
+            <th scope="col-4" >
               similarity_percentage
             </th>
-            <th scope="col" rowspan="2">
+            <th scope="col-4" style={{width:'400px'}} >
               Source
             </th>
-            <th scope="col" rowspan="2">
+            {/* <th scope="col" rowspan="2">
               Source Link
-            </th>
-            <th scope="col" rowspan="2">
+            </th> */}
+            <th scope="col-4" >
               Article
             </th>
           </tr>
@@ -51,7 +51,7 @@ const DetailsView = ( details_view ) => {
               <tr>
                 <td>{i.similarity_percentage}%</td>
                 <td>{i.Source}</td>
-                <td>{i.Source_link}</td>
+                {/* <td>{i.Source_link}</td> */}
                 <td>{tempArticle.slice(0, 30).trim()}</td>
               </tr>
             );

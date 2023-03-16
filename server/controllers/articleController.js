@@ -68,7 +68,7 @@ const fileUpload =async (req, res) => {
     const similarity = await axios
       .post(url, {
         article: JSON.stringify(pdfExtract.text),
-        category: req.body.category ? req.body.category : 'CoronaVirus',
+        category: req.body.category ? req.body.category : 'sports',
       })
       .then(res => {
         console.log(res.data);
