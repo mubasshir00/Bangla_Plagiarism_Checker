@@ -12,7 +12,9 @@ const PostArticle = async (req, res) => {
     const headers = {
       'Content-Type': 'application/json',
     };
-    let similarity_res = []
+    let similarity_res = [];
+    let bertsimilarity_res = [];
+
     // console.log({ url });
     const similarity = await axios
       .post(url, {
@@ -22,16 +24,17 @@ const PostArticle = async (req, res) => {
       .then(res => {
         console.log(res.data);
         similarity_res = res.data.similarity_result;
+        bertsimilarity_res = res.data.bertSimilarity_result;
       });
 
     // console.log({ similarity });
-
-    
+    console.log({ bertsimilarity_res });
 
     return res.status(200).json({
       status: true,
-      status_message: 'Success',
+      status_message: 'Successssssss',
       result: similarity_res,
+      bert_result : bertsimilarity_res
     });
   } catch (e) {
     console.log({ e });
@@ -64,6 +67,7 @@ const fileUpload =async (req, res) => {
       'Content-Type': 'application/json',
     };
     let similarity_res = [];
+    let bertsimilarity_res = [] ;
     // console.log({ url });
     const similarity = await axios
       .post(url, {
@@ -71,13 +75,14 @@ const fileUpload =async (req, res) => {
         category: req.body.category ? req.body.category : 'sports',
       })
       .then(res => {
-        console.log(res.data);
+        console.log({res});
         similarity_res = res.data.similarity_result;
+        bertsimilarity_res = res.data.bert_similarity_result;
       });
 
       return res.status(200).json({
         status: true,
-        status_message: 'Success',
+        status_message: 'Successssss',
         result: similarity_res,
       });
    

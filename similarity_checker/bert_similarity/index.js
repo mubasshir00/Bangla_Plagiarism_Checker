@@ -7,7 +7,15 @@ async function loadModel() {
   return model;
 }
 
-// Define a function to calculate text similarity
+const bertSimilarity = async (text1, text2) => {
+  try {
+    const similarity = await textSimilarity(text1,text2);
+    return similarity
+  } catch (e) {
+    console.log({ e });
+  }
+};
+
 async function textSimilarity(text1, text2) {
   const model = await loadModel();
 
@@ -22,7 +30,6 @@ async function textSimilarity(text1, text2) {
   return similarity;
 }
 
-// Example usage
-const text1 = 'আমার  বাংলা';
-const text2 = 'তোমার সোনার বাংলা';
-textSimilarity(text1, text2).then(similarity => console.log(similarity));
+module.exports ={
+  bertSimilarity:bertSimilarity
+}

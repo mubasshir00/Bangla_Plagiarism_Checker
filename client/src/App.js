@@ -22,7 +22,7 @@ const App = () => {
         article: article,
       })
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data);
         setDetailsView(res.data.result);
        setArrOfPie(res.data.result.map((i)=>{
         return {
