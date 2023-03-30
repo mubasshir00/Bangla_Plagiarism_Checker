@@ -19,7 +19,7 @@ const PostArticle = async (req, res) => {
     const similarity = await axios
       .post(url, {
         article: req.body.article,
-        category: req.body.category ? req.body.category : 'CoronaVirus',
+        category: req.body.category ? req.body.category : 'sports',
       })
       .then(res => {
         console.log(res.data);
