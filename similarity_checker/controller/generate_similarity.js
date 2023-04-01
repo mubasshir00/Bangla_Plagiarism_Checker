@@ -47,15 +47,15 @@ const GenerateSimilarity = async (req, res) => {
           JSON.stringify(givenArticleToSentence[j])
         );
 
-        let new_obj_bert = {
-          givenSentence: givenArticleToSentence[j],
-          article: find_related_article[i].article,
-          Source: find_related_article[i].Source,
-          Source_link: find_related_article[i].Source_link,
-          similarity_percentage: bert_similarityCheck,
-        };
-        console.log({ bert_similarityCheck });
-       bert_similarity_result.push(new_obj_bert);
+      //   let new_obj_bert = {
+      //     givenSentence: givenArticleToSentence[j],
+      //     article: find_related_article[i].article,
+      //     Source: find_related_article[i].Source,
+      //     Source_link: find_related_article[i].Source_link,
+      //     similarity_percentage: bert_similarityCheck,
+      //   };
+      //   console.log({ bert_similarityCheck });
+      //  bert_similarity_result.push(new_obj_bert);
       }
     }
 
@@ -78,7 +78,7 @@ const GenerateSimilarity = async (req, res) => {
       status: true,
       similarity_result: similarity_result,
       orginalText: given_article,
-      bertSimilarity_result: bert_similarity_result,
+      // bertSimilarity_result: bert_similarity_result,
     });
   } catch (e) {
     console.log({ e });
