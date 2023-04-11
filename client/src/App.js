@@ -32,6 +32,27 @@ const App = () => {
        }));
       });
   }
+
+   const onClickButtonJaccard = async () => {
+     console.log({ article });
+     await axios
+       .post(`${base_url}/post-article`, {
+         article: article,
+         isJaccard:true
+       })
+       .then(res => {
+         console.log(res.data);
+         setDetailsView(res.data.result);
+         setArrOfPie(
+           res.data.result.map(i => {
+             return {
+               label: i.article.slice(0, 10),
+               value: i.similarity_percentage,
+             };
+           })
+         );
+       });
+   };
   // console.log({ arr_of_pie });
 
   const [file,setFile] = useState();
@@ -84,6 +105,12 @@ const App = () => {
         </div>
         <button onClick={() => onClickButton()} className="btn third">
           Check
+        </button>
+        <button
+          onClick={() => onClickButtonJaccard()}
+          className="btn third"
+        >
+          Check Jaccard
         </button>
         {arr_of_pie.length > 0 ? <ShowView arr_of_pie={arr_of_pie} /> : ''}
         {arr_of_pie.length > 0 ? (

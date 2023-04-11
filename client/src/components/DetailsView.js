@@ -5,6 +5,7 @@ const DetailsView = ( details_view ) => {
     console.log(details_view.details_view);
   return (
     <div>
+      <h2> Similarity</h2>
       <table className="fujita-table">
         <caption></caption>
         <colgroup></colgroup>

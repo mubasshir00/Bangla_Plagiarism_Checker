@@ -1,4 +1,13 @@
-http://localhost:3334/api/generate_result
+POST http://localhost:3334/api/generate_result
+Content-Type: application/json
+
+{
+    "article" : "সর্বশেষ ২৪ ঘণ্টায় (গতকাল বুধবার সকাল ৮টা থেকে আজ বৃহস্পতিবার সকাল ৮টা পর্যন্ত) ৮ জনের করোনা শনাক্ত হয়েছে।" ,
+    "category" :"CoronaVirus"
+}
+
+###
+POST http://localhost:3334/api/jaccer_result
 Content-Type: application/json
 
 {

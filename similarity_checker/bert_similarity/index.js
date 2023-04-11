@@ -27,7 +27,7 @@ async function textSimilarity(text1, text2) {
     () => tf.matMul(embeddings, embeddings.transpose()).arraySync()[0][1]
   );
 
-  return similarity;
+  return Math.random(similarity * 100);
 }
 
 module.exports ={

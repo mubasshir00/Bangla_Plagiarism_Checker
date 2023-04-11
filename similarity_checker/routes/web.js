@@ -5,4 +5,5 @@ router.post(
   '/generate_result',
   GenerateSimilarityController.GenerateSimilarity
 );
+router.post('/jaccer_result',GenerateSimilarityController.GenerateJaccerdSimilarity)
 module.exports = router;
