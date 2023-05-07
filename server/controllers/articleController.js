@@ -7,6 +7,18 @@ const PostArticle = async (req, res) => {
   try {
     console.log('req.body', req.body);
         let url = `http://localhost:3334/api/generate_result`;
+    let categoryCheckURL = `http://localhost:8080/predict`;
+
+    let categoryF ;
+
+    const cat = await axios
+      .post(categoryCheckURL, {
+        article: req.body.article,
+      })
+      .then(res => {
+        categoryF = {...res.data};
+        console.log(categoryF.category);
+      });
 
     if(req.body.isJaccard){
       url = `http://localhost:3334/api/jaccer_result`;
@@ -20,11 +32,14 @@ const PostArticle = async (req, res) => {
     let similarity_res = [];
     let bertsimilarity_res = [];
 
+    if(categoryF.category==='Health'){
+      categoryF.category = 'CoronaVirus';
+    }
     // console.log({ url });
     const similarity = await axios
       .post(url, {
         article: req.body.article,
-        category: req.body.category ? req.body.category : 'CoronaVirus',
+        category: req.body.category ? categoryF.category : 'CoronaVirus',
       })
       .then(res => {
         console.log(res.data);

@@ -46,7 +46,7 @@ def predict():
         if maxium <= v :
             maxium = v 
             category = k
-
+    
     return flask.jsonify({'category': category});    
 
 # start the flask app, allow remote connections 
